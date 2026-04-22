@@ -4,7 +4,7 @@ import {
 } from '../../config/workspace-json-project-json';
 import { dirname } from 'path';
 import { isProjectConfigurationsError } from '../error-types';
-import { createNodesFromFiles, NxPluginV2 } from '../plugins';
+import { createNodesFromFiles, NxPlugin } from '../plugins';
 import { LoadedNxPlugin } from '../plugins/loaded-nx-plugin';
 import {
   createProjectConfigurationsWithPlugins,
@@ -1209,9 +1209,9 @@ describe('project-configuration-utils', () => {
 
   describe('createProjectConfigurations', () => {
     /* A fake plugin that sets `fake-lib` tag to libs. */
-    const fakeTagPlugin: NxPluginV2 = {
+    const fakeTagPlugin: NxPlugin = {
       name: 'fake-tag-plugin',
-      createNodesV2: [
+      createNodes: [
         'libs/*/project.json',
         (vitestConfigPaths) =>
           createNodesFromFiles(
@@ -1234,9 +1234,9 @@ describe('project-configuration-utils', () => {
       ],
     };
 
-    const fakeTargetsPlugin: NxPluginV2 = {
+    const fakeTargetsPlugin: NxPlugin = {
       name: 'fake-targets-plugin',
-      createNodesV2: [
+      createNodes: [
         'libs/*/project.json',
         (projectJsonPaths) =>
           createNodesFromFiles(
@@ -1265,9 +1265,9 @@ describe('project-configuration-utils', () => {
       ],
     };
 
-    const sameNamePlugin: NxPluginV2 = {
+    const sameNamePlugin: NxPlugin = {
       name: 'same-name-plugin',
-      createNodesV2: [
+      createNodes: [
         'libs/*/project.json',
         (projectJsonPaths) =>
           createNodesFromFiles(
@@ -1491,9 +1491,9 @@ describe('project-configuration-utils', () => {
     });
 
     it('should provide helpful error if project has task containing cache and continuous', async () => {
-      const invalidCachePlugin: NxPluginV2 = {
+      const invalidCachePlugin: NxPlugin = {
         name: 'invalid-cache-plugin',
-        createNodesV2: [
+        createNodes: [
           'libs/*/project.json',
           (projectJsonPaths) => {
             const results = [];
@@ -1619,9 +1619,9 @@ describe('project-configuration-utils', () => {
     });
 
     it('should include project and target context in error message when plugin returns invalid {workspaceRoot} token', async () => {
-      const invalidTokenPlugin: NxPluginV2 = {
+      const invalidTokenPlugin: NxPlugin = {
         name: 'invalid-token-plugin',
-        createNodesV2: [
+        createNodes: [
           'libs/*/project.json',
           (projectJsonPaths) =>
             createNodesFromFiles(
@@ -1674,9 +1674,9 @@ describe('project-configuration-utils', () => {
     });
 
     it('should include nx.json context in error message when target defaults have invalid {workspaceRoot} token', async () => {
-      const simplePlugin: NxPluginV2 = {
+      const simplePlugin: NxPlugin = {
         name: 'simple-plugin',
-        createNodesV2: [
+        createNodes: [
           'libs/*/project.json',
           (projectJsonPaths) =>
             createNodesFromFiles(
