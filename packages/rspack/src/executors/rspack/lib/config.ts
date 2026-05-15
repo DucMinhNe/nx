@@ -1,7 +1,7 @@
 import { ExecutorContext } from '@nx/devkit';
 import { type Configuration } from '@rspack/core';
 import {
-  composePluginsSync,
+  composePlugins,
   isNxRspackComposablePlugin,
 } from '../../../utils/config';
 import { resolveUserDefinedRspackConfig } from '../../../utils/resolve-user-defined-rspack-config';
@@ -28,9 +28,9 @@ export async function getRspackConfigs(
     userDefinedConfig = await userDefinedConfig;
   }
 
-  const config = (
+  const config = await (
     options.target === 'web'
-      ? composePluginsSync(withNx(options), withWeb(options))
+      ? composePlugins(withNx(options), withWeb(options))
       : withNx(options)
   )({}, { options, context });
 

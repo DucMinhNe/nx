@@ -1,8 +1,11 @@
-import { type Configuration } from '@rspack/core';
+import type { Configuration } from '@rspack/core';
 import { normalizeAssets } from './normalize-assets';
 import { NxAppRspackPluginOptions } from '../plugins/utils/models';
 import { applyBaseConfig } from '../plugins/utils/apply-base-config';
-import { NxRspackExecutionContext, NxComposableRspackPlugin } from './config';
+import {
+  NxRspackExecutionContext,
+  AsyncNxComposableRspackPlugin,
+} from './config';
 
 const processed = new Set();
 
@@ -10,15 +13,15 @@ export type WithNxOptions = Partial<NxAppRspackPluginOptions>;
 
 /**
  * @param {WithNxOptions} pluginOptions
- * @returns {NxComposableRspackPlugin}
+ * @returns {AsyncNxComposableRspackPlugin}
  */
 export function withNx(
   pluginOptions: WithNxOptions = {}
-): NxComposableRspackPlugin {
-  return function makeConfig(
+): AsyncNxComposableRspackPlugin {
+  return async function makeConfig(
     config: Configuration,
     { options, context }: NxRspackExecutionContext
-  ): Configuration {
+  ): Promise<Configuration> {
     if (processed.has(config)) return config;
 
     applyBaseConfig(

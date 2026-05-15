@@ -38,10 +38,10 @@ export interface WithWebOptions {
 const processed = new Set();
 
 export function withWeb(pluginOptions: WithWebOptions = {}) {
-  return function makeConfig(
+  return async function makeConfig(
     config: Configuration,
     { options, context }: NxRspackExecutionContext
-  ): Configuration {
+  ): Promise<Configuration> {
     if (processed.has(config)) {
       return config;
     }

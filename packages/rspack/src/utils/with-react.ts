@@ -6,11 +6,11 @@ import { applyReactConfig } from '../plugins/utils/apply-react-config';
 export interface WithReactOptions extends WithWebOptions {}
 
 export function withReact(opts: WithReactOptions = {}) {
-  return function makeConfig(
+  return async function makeConfig(
     config: Configuration,
     { options, context }: NxRspackExecutionContext
-  ): Configuration {
-    config = withWeb({ ...opts, cssModules: true })(config, {
+  ): Promise<Configuration> {
+    config = await withWeb({ ...opts, cssModules: true })(config, {
       options,
       context,
     });
