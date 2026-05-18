@@ -91,7 +91,7 @@
       "type": "boolean",
       "description": "Whether or not to configure the ESLint `parserOptions.project` option. We do not do this by default for lint performance reasons.",
       "default": false,
-      "x-deprecated": "The `setParserOptionsProject` option is deprecated and will be removed in Nx v24. Use `enableTypedLinting` instead."
+      "x-deprecated": "Use `enableTypedLinting` instead. This option will be removed in v24."
     },
     "standaloneConfig": {
       "description": "Split the project configuration into `<projectRoot>/project.json` rather than including it inside `workspace.json`.",
