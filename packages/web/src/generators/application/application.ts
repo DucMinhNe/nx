@@ -336,7 +336,11 @@ export async function applicationGeneratorInternal(host: Tree, schema: Schema) {
       ],
       unitTestRunner: options.unitTestRunner,
       skipFormat: true,
-      setParserOptionsProject: options.setParserOptionsProject,
+      // Cross-plugin: map new flag to `setParserOptionsProject` so the published
+      // @nx/eslint (which lacks `enableTypedLinting` in its types yet) receives
+      // the signal.
+      setParserOptionsProject:
+        options.enableTypedLinting || options.setParserOptionsProject,
       addPlugin: options.addPlugin,
     });
     tasks.push(lintTask);
@@ -522,6 +526,11 @@ export async function applicationGeneratorInternal(host: Tree, schema: Schema) {
       baseUrl: e2eWebServerInfo.e2eWebServerAddress,
       directory: 'src',
       skipFormat: true,
+      // Cross-plugin: map new flag to `setParserOptionsProject` for the
+      // published @nx/cypress.
+      setParserOptionsProject:
+        options.enableTypedLinting || options.setParserOptionsProject,
+      enableTypedLinting: undefined,
       webServerCommands: {
         default: e2eWebServerInfo.e2eWebServerCommand,
         production: e2eWebServerInfo.e2eCiWebServerCommand,
@@ -572,7 +581,10 @@ export async function applicationGeneratorInternal(host: Tree, schema: Schema) {
       directory: 'src',
       js: false,
       linter: options.linter,
-      setParserOptionsProject: options.setParserOptionsProject,
+      // Cross-plugin: map new flag to `setParserOptionsProject` for the
+      // published @nx/playwright.
+      setParserOptionsProject:
+        options.enableTypedLinting || options.setParserOptionsProject,
       webServerCommand: e2eWebServerInfo.e2eCiWebServerCommand,
       webServerAddress: e2eWebServerInfo.e2eCiBaseUrl,
       addPlugin: options.addPlugin,

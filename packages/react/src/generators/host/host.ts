@@ -1,4 +1,5 @@
 import { ensureRootProjectName } from '@nx/devkit/internal';
+import { isTypedLintingEnabled } from '@nx/eslint/internal';
 import {
   addDependenciesToPackageJson,
   detectPackageManager,
@@ -162,7 +163,7 @@ export async function hostGenerator(
     updateProjectConfiguration(host, options.projectName, projectConfig);
   }
 
-  if (!options.setParserOptionsProject) {
+  if (!isTypedLintingEnabled(options)) {
     host.delete(
       joinPathFragments(options.appProjectRoot, 'tsconfig.lint.json')
     );
