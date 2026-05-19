@@ -325,6 +325,11 @@ export class AngularRspackPlugin implements RspackPluginInstance {
     });
 
     compiler.hooks.afterDone.tap(PLUGIN_NAME, (stats) => {
+      // `afterDone` fires with `undefined` when the compilation failed before
+      // producing stats. The error is reported via the run callback; there is
+      // nothing to log here.
+      if (!stats) return;
+
       // Get stats options - merge defaults with user's config if provided
       const configStats = compiler.options.stats;
       const defaultStatsOptions = getStatsOptions(this.#_options.verbose);
