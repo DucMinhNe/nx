@@ -26,7 +26,7 @@
     },
     "update-23-0-0-migrate-rspack-config-to-v2": {
       "cli": "nx",
-      "version": "23.0.0-beta.14",
+      "version": "23.0.0-beta.18",
       "description": "Rewrites rspack.config.{js,ts,mjs,cjs} files for @rspack/core@2: replaces output.libraryTarget with output.library.type and drops experiments.css: false (no-op on v2).",
       "factory": "./src/migrations/update-23-0-0/migrate-rspack-config-to-v2",
       "requires": {
@@ -35,7 +35,7 @@
     },
     "update-23-0-0-rewrite-experiments-css-to-module-rules": {
       "cli": "nx",
-      "version": "23.0.0-beta.14",
+      "version": "23.0.0-beta.18",
       "description": "AI-assisted migration: rewrite experiments.css: true configs for @rspack/core@2 by injecting a CSS rule into module.rules.",
       "prompt": "./src/migrations/update-23-0-0/rewrite-experiments-css-to-module-rules.md",
       "requires": {
@@ -178,7 +178,7 @@
       }
     },
     "23.0.0-rspack-v2": {
-      "version": "23.0.0-beta.14",
+      "version": "23.0.0-beta.18",
       "requires": {
         "@rspack/core": ">=1.0.0 <2.0.0"
       },
@@ -198,7 +198,7 @@
       }
     },
     "23.0.0-module-federation-rspack-v2": {
-      "version": "23.0.0-beta.14",
+      "version": "23.0.0-beta.18",
       "requires": {
         "@rspack/core": ">=1.0.0 <2.0.0"
       },
