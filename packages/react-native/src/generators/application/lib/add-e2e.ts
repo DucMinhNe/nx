@@ -1,6 +1,6 @@
 import { addE2e as addE2eReact } from '@nx/react/src/generators/application/lib/add-e2e';
 import { GeneratorCallback, Tree, ensurePackage, names } from '@nx/devkit';
-import { isTypedLintingEnabled } from '@nx/eslint/src/generators/utils/eslint-file';
+import { isTypedLintingEnabled } from '@nx/eslint/internal';
 
 import { nxVersion } from '../../../utils/versions';
 

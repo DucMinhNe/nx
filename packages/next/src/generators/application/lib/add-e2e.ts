@@ -1,4 +1,4 @@
-import { isTypedLintingEnabled } from '@nx/eslint/src/generators/utils/eslint-file';
+import { isTypedLintingEnabled } from '@nx/eslint/internal';
 import {
   getE2EWebServerInfo,
   readTargetDefaultsForTarget,
