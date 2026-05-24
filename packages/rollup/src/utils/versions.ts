@@ -1,4 +1,5 @@
-export const nxVersion = require('../../package.json').version;
+import { join } from 'path';
+export const nxVersion = require(join('@nx/rollup', 'package.json')).version;
 export const coreJsVersion = '^3.36.1';
 export const rollupVersion = '^4.14.0';
 export const swcLoaderVersion = '0.1.15';
